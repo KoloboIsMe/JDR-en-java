@@ -4,7 +4,6 @@ import Character.Character;
 import Character.Hero;
 import Character.Enemy;
 
-import Dungeon.Location;
 import Dungeon.Chest;
 import Dungeon.Entity;
 import Dungeon.Map;
@@ -19,6 +18,12 @@ import JDR.Round;
 import JDR.Input;
 import JDR.Output;
 
-public class Game {
-
+public class Main {
+	public Main() {
+		Entity[] entities = {
+				new Chest("Chest", 1,1, new Weapon("Weapon", 0,0,"Sword of the tides", 10))
+		};
+		Map dungeon = new Map(entities,10,10);
+	}
+	
 }

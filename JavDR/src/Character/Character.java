@@ -27,9 +27,6 @@ public class Character extends Entity{
 		this.HP = HP;
 		this.Speed = Speed;
 		this.currentWeapon = 0;
-		this.weaponInventory = [2];
-		this.artifactInventory = [3];
-		this.potionInventory = [4];
 	}
 	//Constructor Functions
 	public void setName (String name) {

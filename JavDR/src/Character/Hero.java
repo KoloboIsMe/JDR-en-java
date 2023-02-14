@@ -8,7 +8,7 @@ public class Hero extends Character{
 	public Hero(String name, int Exp, int Atk, int Def, int HP, int Speed, int x, int y, 
 			int currentWeapon, Weapon[] weaponInventory, 
 			Artifact[] artifactInventory, Potion[] potionInventory) {
-		super(name, Exp, Atk, Def, HP, Speed, x, y);
+		super(entityType, x, y, name, Exp, Atk, Def, HP, Speed);
 	}
 	//Constructor functions
 	public void setCurrentWeapon (int currentWeapon) {

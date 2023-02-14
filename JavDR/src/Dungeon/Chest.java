@@ -10,4 +10,16 @@ public class Chest extends Entity{
 		this.containedItem = containedItem;
 		this.isOpen = false;
 	}
+	public void setContainedItem (Item containedItem) {
+		this.containedItem = containedItem;
+	}
+	public Item getContainedItem () {
+		return this.containedItem;
+	}
+	public void setIsOpen (boolean isOpen) {
+		this.isOpen = isOpen;
+	}
+	public boolean getIsOpen () {
+		return this.isOpen;
+	}
 }
