@@ -1,12 +1,13 @@
 package Character;
 
-import java.util.ArrayList; 
-
 import Items.Artifact;
 import Items.Item;
 import Items.Potion;
 import Items.Weapon;
+import Dungeon.Chest;
 import Dungeon.Entity;
+import Dungeon.Instance;
+
 
 public class Character extends Entity{
 	public String name;
@@ -16,9 +17,7 @@ public class Character extends Entity{
 	public int HP;
 	public int Speed;
 	public int currentWeapon;
-	public ArrayList<Weapon> weaponInventory; 
-	public ArrayList<Artifact> artifactInventory; 
-	public ArrayList<Potion> potionInventory;
+	public Inventory inventory;
 	
 	public Character (String entityType, int x, int y, 
 			String name, int Exp, int Atk, int Def, int HP, int Speed) {
@@ -30,9 +29,7 @@ public class Character extends Entity{
 		this.HP = HP;
 		this.Speed = Speed;
 		this.currentWeapon = 0;
-		this.weaponInventory = null;
-		this.artifactInventory = null;
-		this.potionInventory = null;
+		this.inventory = new Inventory();
 		
 	}
 	//Constructor Functions
@@ -79,74 +76,89 @@ public class Character extends Entity{
 	}
 	
 	//Functions
-	@Override
-	public String moveUp() {
+	public void moveUp() {
 		this.y = this.y-1;
-		return this.name + " : Moved up !";
+		System.out.println(this.name + " : Moved up !");
 	}
-	@Override
-	public String moveDown() {
+	public void moveDown() {
 		this.y = this.y+1;
-		return this.name + " : Moved down !";
+		System.out.println(this.name + " : Moved down !");
 	}
-	@Override
-	public String moveLeft() {
+	public void moveLeft() {
 		this.x = this.x+1;
-		return this.name + " : Moved left !";
+		System.out.println(this.name + " : Moved left !");
 	}
-	@Override
-	public String moveRight() {
+	public void moveRight() {
 		this.x = this.x-1;
-		return this.name + " : Moved right !";
+		System.out.println(this.name + " : Moved right !");
 	}
-	@Override
-	public String beAttack (int damageTaken) {
+	public void attack (Character target) {
+		System.out.println("I can't attack, I'm just a random character !");
+	}
+	public void beAttack (int damageTaken) {
 		if (damageTaken - this.Def >= 0) {
 			this.HP = this.HP - (damageTaken - this.Def);
-			return this.name + " reçoit " + (damageTaken - this.Def) + " dégats.";
+			System.out.println(this.name + " reçoit " + (damageTaken - this.Def) + " dégats.");
 		}
-		return this.name + " encaisse les dégats.";
+		System.out.println(this.name + " encaisse les dégats.");
 	}
-	@Override
-	public String attack(Character target) {
-		return this.name + " : I can't attack...";
+	public void openChest(Chest chest) {
+		chest.opened();
+		System.out.println(this.name + " : Oppened a chest.");
 	}
-	@Override
-	public String openChest() {
-		return this.name + " : Oppened a chest.";
-	}
-	@Override
-	public String pickItem(Item item) {
+	public void pickItem(Item item) {
 		String type = item.getType();
 		if (type == "Weapon") {
-			if (weaponInventory.size() < 2) {
-				weaponInventory.add((Weapon) item);
-				return this.name + "Picked " + item.getName() + " from the ground.";
+			if (this.inventory.weapons.size() < 2) {
+				this.inventory.weapons.add((Weapon) item);
+				System.out.println(this.name + " picked " + item.getName() + " from the ground.");
 			}
-			return this.name + " : My pockets are full !";
+			else {
+				System.out.println(this.name + " : My pockets are full !");
+			}
 		}
 		else if (type == "Artifact") {
-			if (artifactInventory.size() < 2) {
-				artifactInventory.add((Artifact) item);
-				return this.name + "Picked " + item.getName() + " from the ground.";
+			if (this.inventory.artifacts.size() < 2) {
+				this.inventory.artifacts.add((Artifact) item);
+				System.out.println(this.name + " picked " + item.getName() + " from the ground.");
 			}
-			return this.name + " : My pockets are full !";
+			else {
+				System.out.println(this.name + " : My pockets are full !");
+			}
 		}
 		else if (type == "Potion") {
-			if (potionInventory.size() < 2) {
-				potionInventory.add((Potion) item);
-				return this.name + "Picked " + item.getName() + " from the ground.";
+			if (this.inventory.potions.size() < 2) {
+				this.inventory.potions.add((Potion) item);
+				System.out.println(this.name + " picked " + item.getName() + " from the ground.");
 			}
-			return this.name + " : My pockets are full !";
+			else {
+				System.out.println(this.name + " : My pockets are full !");
+			}
 		}
-		return "I can't pick that up !";
+		else {
+			System.out.println("I can't pick that up !");
+		}
 	}
-	@Override
-	public String throwItem(Item item) {
-		return this.name + "Throwed " + item.getName() + " on the ground.";
+	public void checkInventory() {
+		System.out.println( this.name + "'s inventory :");
+		System.out.println("   Weapons[" + this.inventory.weapons.size() + "/2] :");
+		for(int i = 0 ; i < this.inventory.weapons.size(); ++i) {
+			System.out.println("      " + this.inventory.weapons.get(i).getName()) ; 
+		}
+		System.out.println("   Artifacts[" + this.inventory.artifacts.size() + "/3] :");
+		for(int i = 0 ; i < this.inventory.artifacts.size(); ++i) {
+			System.out.println("      " + this.inventory.artifacts.get(i).getName()) ; 
+		}
+		System.out.println("   Potions[" + this.inventory.potions.size() + "/5] :");
+		for(int i = 0 ; i < this.inventory.potions.size(); ++i) {
+			System.out.println("      " + this.inventory.potions.get(i).getName()) ; 
+		}
 	}
-	@Override
-	public String useItem(Item item) {
-		return this.name + "Used " + item.getName() + " !";
+	public void watch(Instance instance) {
+		System.out.println( this.name + "can see :");
+		System.out.println( "    Up : " + instance.whatIsIn(this.x, this.y-1).entityType);
+		System.out.println( "    Right : " + instance.whatIsIn(this.x+1, this.y).entityType);
+		System.out.println( "    Left : " + instance.whatIsIn(this.x-1, this.y).entityType);
+		System.out.println( "    Down : " + instance.whatIsIn(this.x, this.y+1).entityType);
 	}
 }

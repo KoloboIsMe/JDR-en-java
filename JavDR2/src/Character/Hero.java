@@ -17,12 +17,10 @@ public class Hero extends Character{
 	public String getType() {
 		return "Hero";
 	}
-
-	
 	@Override
-	public String attack(Character target) {
-		int dmg = this.Atk + this.weaponInventory.get(currentWeapon).damage;
+	public void attack(Character target) {
+		int dmg = this.Atk + this.inventory.weapons.get(currentWeapon).damage;
 		target.beAttack(dmg);
-		return this.name + " : Deals " + dmg; 
+		System.out.println(this.name + " : Deals " + dmg); 
 	}
 }

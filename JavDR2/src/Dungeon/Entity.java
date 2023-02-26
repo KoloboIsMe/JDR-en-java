@@ -36,37 +36,7 @@ public class Entity {
 		return "Entity";
 	}
 	
-	public String where() {
-		return "(" + this.x + ";" + this.y + ")";
-	}
-	public String moveUp() {
-		return this.entityType + " can't move.";
-	}
-	public String moveDown() {
-		return this.entityType + " can't move.";
-	}
-	public String moveLeft() {
-		return this.entityType + " can't move.";
-	}
-	public String moveRight() {
-		return this.entityType + " can't move.";
-	}
-	public String beAttack (int damageTaken) {
-		return this.entityType + " can't be damaged.";
-	}
-	public String attack(Character target) {
-		return this.entityType + " can't attack anything.";
-	}
-	public String openChest() {
-		return this.entityType + " can't open anything.";
-	}
-	public String pickItem(Item item) {
-		return this.entityType + " can't pick up anything.";
-	}
-	public String throwItem(Item item) {
-		return this.entityType + " can't  throw anything.";
-	}
-	public String useItem(Item item) {
-		return this.entityType + " can't  use anything.";
+	public void where() {
+		System.out.println("(" + this.x + ";" + this.y + ")");
 	}
 }

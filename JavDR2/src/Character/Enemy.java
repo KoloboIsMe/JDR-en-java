@@ -10,4 +10,10 @@ public class Enemy extends Character{
 		String ret = "Enemy";
 		return ret;
 	}
+	@Override
+	public void attack(Character target) {
+		int dmg = this.Atk + this.inventory.weapons.get(currentWeapon).damage;
+		target.beAttack(dmg);
+		System.out.println(this.name + " : Deals " + dmg); 
+	}
 }
