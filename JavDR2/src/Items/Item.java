@@ -1,11 +1,13 @@
 package Items;
-import Dungeon.Entity;
+import JDR.Coordinate;
+import JDR.Entity;
+import JDR.Instance;
 
 public class Item extends Entity {
 	public String name;
 	
-	public Item(String entityType, int x, int y, String name) {
-		super(entityType, x, y);
+	public Item(Instance instance, Coordinate pos, String name) {
+		super(instance, pos);
 		this.name = name;
 	}
 	
@@ -21,5 +23,8 @@ public class Item extends Entity {
 	public String getType() {
 		String ret = "Item";
 		return ret;
+	}
+	public void use() {
+		System.out.println("Can't use that.");
 	}
 }

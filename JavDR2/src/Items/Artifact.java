@@ -1,8 +1,11 @@
 package Items;
 
+import JDR.Coordinate;
+import JDR.Instance;
+
 public class Artifact extends Item{
-	public Artifact(String entityType, int x, int y, String name) {
-		super(entityType, x, y, name);
+	public Artifact(Instance instance, Coordinate pos, String name) {
+		super(instance, pos, name);
 	}
 	@Override
 	public String getType() {

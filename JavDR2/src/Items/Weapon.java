@@ -1,10 +1,13 @@
 package Items;
 
+import JDR.Coordinate;
+import JDR.Instance;
+
 public class Weapon extends Item{
 	public int damage;
 	
-	public Weapon(String entityType, int x, int y, String name, int damage) {
-		super(entityType, x, y, name);
+	public Weapon(Instance instance, Coordinate pos, String name, int damage) {
+		super(instance, pos, name);
 		this.damage = damage;
 	}
 	@Override

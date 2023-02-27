@@ -4,101 +4,62 @@ import Items.Artifact;
 import Items.Item;
 import Items.Potion;
 import Items.Weapon;
+import JDR.Coordinate;
+import JDR.Entity;
+import JDR.Instance;
 import Dungeon.Chest;
-import Dungeon.Entity;
-import Dungeon.Instance;
+import Dungeon.Room;
 
 
 public class Character extends Entity{
 	public String name;
-	public int Exp;
-	public int Atk;
-	public int Def;
-	public int HP;
-	public int Speed;
+	public Statistic stats;
 	public int currentWeapon;
 	public Inventory inventory;
 	
-	public Character (String entityType, int x, int y, 
-			String name, int Exp, int Atk, int Def, int HP, int Speed) {
-		super(entityType, x, y);
+	public Character (Instance instance, Coordinate pos, 
+			String name, Statistic stats) {
+		super(instance, pos);
 		this.name = name;
-		this.Exp = Exp;
-		this.Atk = Atk;
-		this.Def = Def;
-		this.HP = HP;
-		this.Speed = Speed;
+		this.stats = stats;
 		this.currentWeapon = 0;
 		this.inventory = new Inventory();
 		
 	}
-	//Constructor Functions
-	public void setName (String name) {
-		this.name = name;
-	}
-	public String getName () {
-		return this.name;
-	}
-	public void setExp (int Exp) {
-		this.Exp = Exp;
-	}
-	public int getExp () {
-		return this.Exp;
-	}
-	public void setAtk (int Atk) {
-		this.Atk = Atk;
-	}
-	public int getAtk () {
-		return this.Atk;
-	}
-	public void setDef (int Def) {
-		this.Def = Def;
-	}
-	public int getDef () {
-		return this.Def;
-	}
-	public void setHP (int HP) {
-		this.HP = HP;
-	}
-	public int getHP () {
-		return this.HP;
-	}
-	public void setSpeed (int Speed) {
-		this.Speed = Speed;
-	}
-	public int getSpeed () {
-		return this.Speed;
-	}
 	@Override
 	public String getType() {
-		String ret = "Character";
-		return ret;
+		return "Character";
 	}
 	
 	//Functions
 	public void moveUp() {
-		this.y = this.y-1;
-		System.out.println(this.name + " : Moved up !");
+		if(this.instance.whatIsIn(new Coordinate(this.pos.x, this.pos.y-1)).getType() == "Obstacle") {
+			System.out.println(this.name + " : can't move up.");
+		}
+		else {
+			this.pos.y = this.pos.y-1;
+			System.out.println(this.name + " : Moved up !");
+		}
 	}
 	public void moveDown() {
-		this.y = this.y+1;
+		this.pos.y = this.pos.y+1;
 		System.out.println(this.name + " : Moved down !");
 	}
 	public void moveLeft() {
-		this.x = this.x+1;
+		this.pos.x = this.pos.x+1;
 		System.out.println(this.name + " : Moved left !");
 	}
 	public void moveRight() {
-		this.x = this.x-1;
+		this.pos.x = this.pos.x-1;
 		System.out.println(this.name + " : Moved right !");
 	}
 	public void attack (Character target) {
 		System.out.println("I can't attack, I'm just a random character !");
 	}
 	public void beAttack (int damageTaken) {
-		if (damageTaken - this.Def >= 0) {
-			this.HP = this.HP - (damageTaken - this.Def);
-			System.out.println(this.name + " reçoit " + (damageTaken - this.Def) + " dégats.");
+		if (damageTaken - this.stats.def >= 0) {
+			this.stats.hp = this.stats.hp - (damageTaken - this.stats.def);
+			System.out.println(this.name + " reçoit " + (damageTaken - this.stats.def) + " dégats.");
 		}
 		System.out.println(this.name + " encaisse les dégats.");
 	}
@@ -154,11 +115,12 @@ public class Character extends Entity{
 			System.out.println("      " + this.inventory.potions.get(i).getName()) ; 
 		}
 	}
-	public void watch(Instance instance) {
+	public void watch() {
+		Room room = (Room) this.instance;
 		System.out.println( this.name + "can see :");
-		System.out.println( "    Up : " + instance.whatIsIn(this.x, this.y-1).entityType);
-		System.out.println( "    Right : " + instance.whatIsIn(this.x+1, this.y).entityType);
-		System.out.println( "    Left : " + instance.whatIsIn(this.x-1, this.y).entityType);
-		System.out.println( "    Down : " + instance.whatIsIn(this.x, this.y+1).entityType);
+		System.out.println( "    Up : " + room.whatIsIn(new Coordinate(this.pos.x, this.pos.y-1)).getType());
+		System.out.println( "    Right : " + room.whatIsIn(new Coordinate(this.pos.x+1, this.pos.y)).getType());
+		System.out.println( "    Left : " + room.whatIsIn(new Coordinate(this.pos.x-1, this.pos.y)).getType());
+		System.out.println( "    Down : " + room.whatIsIn(new Coordinate(this.pos.x, this.pos.y+1)).getType());
 	}
 }

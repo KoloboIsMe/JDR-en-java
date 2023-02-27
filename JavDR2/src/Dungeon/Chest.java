@@ -1,11 +1,14 @@
 package Dungeon;
 import Items.Item;
+import JDR.Coordinate;
+import JDR.Entity;
+import JDR.Instance;
 
 public class Chest extends Entity{
 	public Entity contains;
 	
-	public Chest(String entityType, int x, int y, Entity contains) {
-		super(entityType, x, y);
+	public Chest(Instance instance, Coordinate pos, Entity contains) {
+		super(instance, pos);
 		this.contains = contains;
 	}
 	public void setContainedItem (Entity containedItem) {
@@ -16,16 +19,13 @@ public class Chest extends Entity{
 	}
 	@Override
 	public String getType() {
-		String ret = "Chest";
-		return ret;
+		return "Chest";
 	}
 	public void opened() {
 		//The contained item appears on the floor
-		this.contains.setX(this.getX());
-		this.contains.setY(this.getY());
+		this.contains.pos = this.pos;
 		//And the chest disappear
-		setX(0);
-		setY(0);
-		System.out.println("The chest is open. It contains a" + this.getContainedItem().getEntityType() + " !");
+		this.pos = new Coordinate(0,0);
+		System.out.println("The chest is open. It contains a" + this.getContainedItem().getType() + " !");
 	}
 }

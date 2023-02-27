@@ -1,9 +1,11 @@
 package Character;
 
+import JDR.Coordinate;
+import JDR.Instance;
+
 public class Enemy extends Character{
-	public Enemy(String entityType, int x, int y, 
-			String name, int Exp, int Atk, int Def, int HP, int Speed) {
-		super(entityType, x, y, name, Exp, Atk, Def, HP, Speed);
+	public Enemy(Instance instance, Coordinate pos, String name, Statistic stats) {
+		super(instance, pos, name, stats);
 	}
 	@Override
 	public String getType() {
@@ -12,7 +14,7 @@ public class Enemy extends Character{
 	}
 	@Override
 	public void attack(Character target) {
-		int dmg = this.Atk + this.inventory.weapons.get(currentWeapon).damage;
+		int dmg = this.stats.atk + this.inventory.weapons.get(currentWeapon).damage;
 		target.beAttack(dmg);
 		System.out.println(this.name + " : Deals " + dmg); 
 	}

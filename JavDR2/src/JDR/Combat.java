@@ -14,8 +14,8 @@ public class Combat {
 		System.out.println("Combat has started.");
 	}
 	
-	public void round () {
-		if (char1.getSpeed() >= char2.getSpeed()) {
+	public void round (){
+		if (char1.stats.speed >= char2.stats.speed) {
 			this.char1.attack(char2);
 		}
 		else {
@@ -25,7 +25,7 @@ public class Combat {
 	}
 	
 	public boolean end () {
-		if (this.char1.getHP() <= 0 || this.char2.getHP() <= 0) {
+		if (this.char1.stats.hp <= 0 || this.char2.stats.hp <= 0) {
 			System.out.println("Combat has ended.");
 			return true;
 		}

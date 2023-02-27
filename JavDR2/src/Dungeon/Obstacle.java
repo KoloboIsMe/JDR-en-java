@@ -1,12 +1,15 @@
 package Dungeon;
 
+import JDR.Coordinate;
+import JDR.Entity;
+import JDR.Instance;
+
 public class Obstacle extends Entity{
-	public Obstacle(String entityType, int x, int y) {
-		super(entityType, x, y);
+	public Obstacle(Instance instance, Coordinate pos) {
+		super(instance, pos);
 	}
 	@Override
 	public String getType() {
-		String ret = "Obstacle";
-		return ret;
+		return "Obstacle";
 	}
 }
