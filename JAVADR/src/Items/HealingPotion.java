@@ -18,7 +18,7 @@ public class HealingPotion extends Potion{
 	}
 
 	@Override
-	public void use(Entity target) {
+	public void use(Entity target) { //A healing potion simply heals the target
 		((Character)target).stats.hp = ((Character)target).stats.hp + heal;
 	}
 }

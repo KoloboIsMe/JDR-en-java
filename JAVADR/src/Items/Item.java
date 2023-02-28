@@ -24,7 +24,8 @@ public class Item extends Entity {
 		String ret = "Item";
 		return ret;
 	}
-	public void use(Entity target) {
-		System.out.println("Can't use that.");
+	public void use(Entity target) { //An item could be use on any type of entity. 
+								//Why not on a chest ? An enemy ? An obstacle ? Another item ?
+		//No use here
 	}
 }

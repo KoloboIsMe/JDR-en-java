@@ -11,7 +11,7 @@ public class Combat {
 		this.char1 = char1;
 		this.char2 = char2;
 		turn = 0;
-		System.out.println("Combat has started.");
+		System.out.println("A combat between " + char1.name + " and " + char2.name + "has started.");
 	}
 	
 	public void round (){
