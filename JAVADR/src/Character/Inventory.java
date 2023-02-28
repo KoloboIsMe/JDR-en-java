@@ -9,6 +9,8 @@ import Items.Potion;
 import Items.Weapon;
 
 public class Inventory {
+	//This are the basic inventory for any character.
+	//A monster loots the entirety of its inventory on the ground when he dies.
 	public List<Weapon> weapons; 
 	public List<Artifact> artifacts; 
 	public List<Potion> potions;

@@ -9,7 +9,6 @@ public class Potion extends Item{
 	}
 	@Override
 	public String getType() {
-		String ret = "Potion";
-		return ret;
+		return "Potion";
 	}
 }

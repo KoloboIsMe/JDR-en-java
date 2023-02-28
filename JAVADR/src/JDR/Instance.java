@@ -14,10 +14,11 @@ public class Instance {
 	}
 	
 	public void whatToDo() {
-		System.out.println("There is nothing much to do here.");
+		//yet useless here
 	}
 	
 	public Hero getHero() {
+		//Return the Hero from the entities
 		for (int i = 0 ; i < this.entities.size() ; ++i) {
 			if (this.entities.get(i).getType() == "Hero") {
 				return (Hero) this.entities.get(i);
@@ -27,6 +28,7 @@ public class Instance {
 	}
 	
 	public Boss getBoss() {
+		//Return the Boss from the entities
 		for (int i = 0 ; i < this.entities.size() ; ++i) {
 			if (this.entities.get(i).getType() == "Boss") {
 				return (Boss) this.entities.get(i);
@@ -35,6 +37,7 @@ public class Instance {
 		return null;
 	}
 	public Entity whatIsIn(Coordinate coord) {
+		//yet useless here
 		return null;
 	}
 }

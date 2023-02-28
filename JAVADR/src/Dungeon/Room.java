@@ -7,6 +7,7 @@ import JDR.Entity;
 import JDR.Instance;
 
 public class Room extends Instance{
+	//A room is an instance wich has specific dimension (not like... an inventory, or a void)
 	public Coordinate size;
 	
 	public Room (List<Entity> entities, Coordinate size) {

@@ -12,13 +12,13 @@ import Dungeon.Room;
 
 
 public class Character extends Entity{
+	//Any kind of character
 	public String name;
 	public Statistic stats;
 	public int currentWeapon;
 	public Inventory inventory;
 	
-	public Character (Instance instance, Coordinate pos, 
-			String name, Statistic stats) {
+	public Character (Instance instance, Coordinate pos, String name, Statistic stats) {
 		super(instance, pos);
 		this.name = name;
 		this.stats = stats;
@@ -69,9 +69,10 @@ public class Character extends Entity{
 		}
 	}
 	public void attack (Character target) {
-		System.out.println("I can't attack, I'm just a random character !");
+		//can't be used here
 	}
 	public void beAttack (int damageTaken) {
+		//When it takes damage
 		if (damageTaken - this.stats.def >= 0) {
 			this.stats.hp = this.stats.hp - (damageTaken - this.stats.def);
 			System.out.println(this.name + " take " + (damageTaken - this.stats.def) + " damages.");
@@ -116,6 +117,7 @@ public class Character extends Entity{
 		}
 	}
 	public void checkInventory() {
+		// A FAIRE mettre cette méthode dans Inventory
 		System.out.println( this.name + "'s inventory :");
 		System.out.println("   Weapons[" + this.inventory.weapons.size() + "/2] :");
 		for(int i = 0 ; i < this.inventory.weapons.size(); ++i) {
@@ -131,6 +133,7 @@ public class Character extends Entity{
 		}
 	}
 	public void watch() {
+		//A FAIRE mettre cette méthode dans Room
 		Room room = (Room) this.instance;
 		System.out.println( this.name + " can see :");
 		System.out.println( "    Up : " + room.whatIsIn(new Coordinate(this.pos.x, this.pos.y-1)).getType());

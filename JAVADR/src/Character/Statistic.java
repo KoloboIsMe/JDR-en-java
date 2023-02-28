@@ -1,6 +1,8 @@
 package Character;
 
 public class Statistic {
+	//These are the basic statistics for any character.
+	//The Hero get the exp that has the enemy when defeating it.
 	public int exp;
 	public int atk;
 	public int def;

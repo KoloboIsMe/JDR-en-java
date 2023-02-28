@@ -12,7 +12,6 @@ public class Weapon extends Item{
 	}
 	@Override
 	public String getType() {
-		String ret = "Weapon";
-		return ret;
+		return "Weapon";
 	}
 }

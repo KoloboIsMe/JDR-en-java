@@ -24,7 +24,7 @@ public class Item extends Entity {
 		String ret = "Item";
 		return ret;
 	}
-	public void use() {
+	public void use(Entity target) {
 		System.out.println("Can't use that.");
 	}
 }

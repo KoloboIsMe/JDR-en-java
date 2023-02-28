@@ -5,17 +5,12 @@ import JDR.Entity;
 import JDR.Instance;
 
 public class Chest extends Entity{
+	//A chest can contain any entity just to permit more creativity. An item ? A mimic ? Another chest ? why not !
 	public Entity contains;
 	
 	public Chest(Instance instance, Coordinate pos, Entity contains) {
 		super(instance, pos);
 		this.contains = contains;
-	}
-	public void setContainedItem (Entity containedItem) {
-		this.contains = containedItem;
-	}
-	public Entity getContainedItem () {
-		return this.contains;
 	}
 	@Override
 	public String getType() {
@@ -26,6 +21,6 @@ public class Chest extends Entity{
 		this.contains.pos = this.pos;
 		//And the chest disappear
 		this.pos = new Coordinate(0,0);
-		System.out.println("The chest is open. It contains a" + this.getContainedItem().getType() + " !");
+		System.out.println("The chest is open. It contains a" + this.contains.getType() + " !");
 	}
 }
